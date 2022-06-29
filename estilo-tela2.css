@@ -68,12 +68,59 @@ body{
 .opcao h3{
     font-weight: 700;
     font-size: 20px;
-    color: #000000;
     margin-bottom: 19px;
     margin-top: 9px;
 }
+.h3Correto{
+    color: #009C22;
+}
+.h3Errado{
+    color: #FF4B4B;
+}
+.divNaoSelecionada img{
+    opacity: 0.3;
+}
+.divNaoSelecionada h3{
+    opacity: 0.3;
+}
+.telaDeAcerto{
+    width: 759px;
+    height: 430px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 44px;
+    margin-bottom: 10px;
+}
+.telaDeAcerto > div{
+    display: flex;
+}
+.telaDeAcerto img{
+    width: 364px;
+    height: 273px;
+    margin: 18px 21px 22px 18px;
+}
+.telaDeAcerto p{
+    font-weight: 700;
+    font-size: 19px;
+    margin: 18px 21px 22px 18px;
+
+}
 .escondido{
     display: none;
+}
+.tituloAcerto{
+    width: 727px;
+    height: 99px;
+    color: #FFFFFF;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    background-color: #EC362D;
+    margin-top: 28px;
 }
 @media (max-width: 1100px)
 {
