@@ -2,13 +2,13 @@ const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
 const topoTela2 = document.querySelector('.topoTela2');
+let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
 const quizIndividual = objeto =>{
-      let templateQuiz =`<div class="quizz-individual">
-                    <p onclick="redirecionaTela2()">
-                    ${objeto.title}
-                    </p>
-                 </div>`
+      let templateQuiz =`<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
+                            <img src="${objeto.image}">
+                            <p>${objeto.title}</p>
+                        </div>`
     return templateQuiz;
 }
 let perguntas = document.querySelector('.perguntas');
@@ -30,10 +30,12 @@ function redirecionaTela1(){
     tela2.classList.add('escondido');
     tela3.classList.add('escondido');
 }
-function redirecionaTela2(){
+function redirecionaTela2(argumento){
+    idObjeto = argumento.id;
     tela1.classList.add('escondido')
     tela2.classList.remove('escondido');
     tela3.classList.add('escondido');
+    getThisQuiz();
 }
 function redirecionaTela3(){
     tela1.classList.add('escondido')
@@ -44,7 +46,7 @@ function selecionaOpcao(opcao){
 
 }
 function getThisQuiz(){
-    const getIDQuiz = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/2457');
+    const getIDQuiz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idObjeto}`);
     getIDQuiz.then(trataIDquiz);
 }
 function trataIDquiz(objeto){
@@ -75,5 +77,4 @@ let constroiQuestao = questao =>{
 
     return pergunta;  
 }
-getThisQuiz();
 getQuizz();
