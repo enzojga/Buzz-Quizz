@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <div class="topo">
+    <div class="topo" onclick="redirecionaTela1()">
       <h1>BuzzQuizz</h1>
     </div>
 
     <div class="corpo">
       <div class="criar-quizz">
         <h1>Você não criou nenhum quizz ainda :(</h1>
-        <div onclick="//direcionar pra tela 3" class="novo-quizz">
+        <div onclick="redirecionaTela3()" class="novo-quizz">
           <h2>Criar Quizz</h2>
         </div>
       </div>
@@ -26,16 +26,16 @@
       <div class="quizz-criado">
         <div class="titulo">
           <h2>Seus Quizzes</h2>
-          <img onclick="//direciona para tela 3" src="img/plus.png" />
+          <img onclick="redirecionaTela3()" src="img/plus.png" />
         </div>
         <div class="quizz-feito">
           <div class="quizz-individual">
-            <p onclick="//direcionar para tela 2">
+            <p onclick="redirecionaTela2()">
               Acerte os personagens corretos dos Simpsons e prove seu amor!
             </p>
           </div>
           <div class="quizz-individual">
-            <p onclick="//direcionar para tela 2">
+            <p onclick="redirecionaTela2()">
               Acerte os personagens corretos dos Simpsons e prove seu amor!
             </p>
           </div>
@@ -46,24 +46,24 @@
         <h3>Todos os Quizzes</h3>
         <div class="quizz-importados">
           <div class="quizz-individual">
-            <p onclick="//direcionar para tela 2">
+            <p onclick="redirecionaTela2()">
               Acerte os personagens corretos dos Simpsons e prove seu amor!
             </p>
           </div>
           <div class="quizz-individual">
-            <p onclick="//direcionar para tela 2">
+            <p onclick="redirecionaTela2()">
               Acerte os personagens corretos dos Simpsons e prove seu amor!
             </p>
           </div>
           <div class="quizz-individual">
-            <p onclick="//direcionar para tela 2">
+            <p onclick="redirecionaTela2()">
               Acerte os personagens corretos dos Simpsons e prove seu amor!
             </p>
           </div>
         </div>
       </div>
     </div>
-    <div class="tela02">
+    <div class="tela02 escondido">
         <div class="topoTela2">
             <img src="imagens/Rectangle 42.png" alt="Testesss">
             <h1>O quão Potterhead é você?</h1>
@@ -97,6 +97,12 @@
             <div class="pergunta"></div>
         </div>
     </div>
+    <div class="tela03 escondido"></div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="scripts.js"></script>
   </body>
 </html>
