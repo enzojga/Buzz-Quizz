@@ -11,84 +11,60 @@
   </head>
 
   <body>
-
+    <div class="topo" onclick="redirecionaTela1()">
+      <h1>BuzzQuizz</h1>
+    </div>
     <div class="tela01 escondido">
-      <div class="topo">
-        <h1>BuzzQuizz</h1>
-      </div>
-
       <div class="corpo">
-        <div class="criar-quizz ">
+        <div class="criar-quizz">
           <h1>Você não criou nenhum quizz ainda :(</h1>
           <div onclick="redirecionaTela3()" class="novo-quizz">
-          <h2>Criar Quizz</h2>
+            <h2>Criar Quizz</h2>
           </div>
         </div>
 
-        <div class="quizz-criado escondido">
+        <div class="quizz-criado">
           <div class="titulo">
             <h2>Seus Quizzes</h2>
-            <img onclick="redirecionaTela3()" src="" />
+            <img onclick="redirecionaTela3()" src="img/plus.png" />
           </div>
-
-          <div class="quizz-criados">
+          <div class="quizz-feito">
             <div class="quizz-individual">
-              <img src="">
-              <p onclick="redirecionaTela2()">                  
+              <p onclick="redirecionaTela2()">
+                Acerte os personagens corretos dos Simpsons e prove seu amor!
+              </p>
+            </div>
+            <div class="quizz-individual">
+              <p onclick="redirecionaTela2()">
+                Acerte os personagens corretos dos Simpsons e prove seu amor!
               </p>
             </div>
           </div>
         </div>
 
         <div class="quizz-todos">
-          <div class="titulo1">
-            <h3>Todos os Quizzes</h3>
-          </div>
-          <div class="quizz-importados">
-            <div class="quizz-individual">
-              <img src="">
-              <p onclick="redirecionaTela2()">                  
-              </p>
-            </div>            
-          </div>
+          <h3>Todos os Quizzes</h3>
+          <div class="quizz-importados"></div>
         </div>
-    
       </div>
     </div>
-
     <div class="tela02 escondido">
-        <div class="topoTela2">
-            <img src="imagens/Rectangle 42.png" alt="Testesss">
-            <h1>O quão Potterhead é você?</h1>
+      <div class="topoTela2"></div>
+      <div class="perguntas">
+        <div class="pergunta telaDeAcerto">
+          <div class="tituloAcerto">
+            <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
+          </div>
+          <div>
+            <img src="imagens/Malphite_1.jpg" alt="" />
+            <p>
+              Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop
+              infinito de comida e clique no botão abaixo para usar o vira-tempo
+              e reiniciar este teste.
+            </p>
+          </div>
         </div>
-        <div class="perguntas">
-            <div class="pergunta">
-                <div class="tituloPergunta">
-                    <h2>Em qual animal Olho-Tonto Moody transfigurou Malfoy?</h2>
-                </div>
-                <div class="opcoes">
-                    <div class="opcao">
-                        <img src="imagens/Malphite_1.jpg" alt="">
-                        <h3>Malphite Verde</h2>
-                    </div>
-                    <div class="opcao">
-                        <img src="imagens/Malphite_1.jpg" alt="">
-                        <h3>Malphite Verde</h2>
-                    </div>
-                    <div class="opcao">
-                        <img src="imagens/Malphite_1.jpg" alt="">
-                        <h3>Malphite Verde</h2>
-                    </div>
-                    <div class="opcao">
-                        <img src="imagens/Malphite_1.jpg" alt="">
-                        <h3>Malphite Verde</h2>
-                    </div>
-                </div>
- 
-            </div>
-            <div class="pergunta"></div>
-            <div class="pergunta"></div>
-        </div>
+      </div>
     </div>
 
     <div class="tela03">
@@ -99,10 +75,22 @@
       <div class="criacao1 escondido">
         <h2>Comece pelo começo</h2>
         <div class="questionario1">
-          <input type="text" class="" placeholder="Título do seu quizz">
-          <input type="text" class="" placeholder="URL da imagem do seu quizz">
-          <input type="text" class="" placeholder="Quantidade de perguntas do quizz">
-          <input type="text" class="" placeholder="Quantidade de níveis do quizz">
+          <input type="text" class="" placeholder="Título do seu quizz" />
+          <input
+            type="text"
+            class=""
+            placeholder="URL da imagem do seu quizz"
+          />
+          <input
+            type="text"
+            class=""
+            placeholder="Quantidade de perguntas do quizz"
+          />
+          <input
+            type="text"
+            class=""
+            placeholder="Quantidade de níveis do quizz"
+          />
         </div>
         <button onclick="" class="confirma">
           <p>Prosseguir pra criar perguntas</p>
@@ -121,15 +109,21 @@
 
       <div class="criacao4 escondido">
         <h2>Comece pelo começo</h2>
-        <img src="">
+        <img src="" />
         <button></button>
         <button></button>
       </div>
-
-
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="scripts.js"></script>
-
   </body>
 </html>
