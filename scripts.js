@@ -1,9 +1,9 @@
 const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
-let objOpcao = [];
+let objOpcao;
 const topoTela2 = document.querySelector('.topoTela2');
-let idObjeto = [];
+let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
 const quizIndividual = objeto =>{
       let templateQuiz =`<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
@@ -16,7 +16,7 @@ let verificaTrue;
 let perguntas = document.querySelector('.perguntas');
 
 function getQuizz(){
-    let chamaQuiz = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+    let chamaQuiz = axios.get('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes');
     chamaQuiz.then(listaQuiz);
     chamaQuiz.catch(trataQuiz);
 }
@@ -47,7 +47,7 @@ function selecionaOpcao(opcao){
 
 }
 function getThisQuiz(){
-    const getIDQuiz = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${idObjeto}`);
+    const getIDQuiz = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idObjeto}`);
     getIDQuiz.then(trataIDquiz);
 }
 function trataIDquiz(objeto){
@@ -58,55 +58,57 @@ function constroiTela2(objeto){
     topoTela2.innerHTML = `<img src="${objeto.image}" alt="">
                      <h1>${objeto.title}</h1>`;
     perguntas.innerHTML += objeto.questions.map(constroiQuestao);
+    console.log(objeto.levels);
 }
 function verificaResposta(opcao){
     let opcaoPai = opcao.parentNode;
     console.log(opcao.innerHTML);
     let filhosPai = opcaoPai.querySelectorAll('.opcao');
+    if(opcao.classList.contains('divNaoSelecionada') || opcao.classList.contains('escolhido')){
+        return;
+    }
     if(opcaoPai.querySelector('.escolhido') === null){
         opcao.classList.add('escolhido');
     }
     for(let i =0; i <filhosPai.length; i++){
+        if(!filhosPai[i].classList.contains('correta')){
+            let h3Filhos = filhosPai[i].querySelector('h3');
+            h3Filhos.classList.add('h3Errado');
+        }
         if(!filhosPai[i].classList.contains('escolhido')){
             filhosPai[i].classList.add('divNaoSelecionada');
-        }else teste2 = filhosPai[i];
-    }
-    let teste = objOpcao[0].filter(objeto =>{
-        console.log(objeto.opcaoCorreta);
-        if(objeto.opcaoCorreta){
-            console.log('analise')
-            return true;
         }
-        return false;
-    });
-    if(teste[0].opcao === teste2.innerHTML){
-        alert('Acertou');
+        if(filhosPai[i].classList.contains('correta')){
+            let h3Correto = filhosPai[i].querySelector('h3');
+            h3Correto.classList.add('h3Correto')
+        }
     }
-    console.log(teste);
 }
 
 let constroiOpcoes = objeto =>{
-    let opcoes = {
-        opcao: `<div class="opcao"  onclick="verificaResposta(this)">
+    let opcao;
+    if(objeto.isCorrectAnswer){
+         opcao = `<div class="opcao correta"  onclick="verificaResposta(this)">
                     <img src="${objeto.image}" alt="">
                     <h3>${objeto.text}</h2>
-                 </div>`,
-        opcaoCorreta: objeto.isCorrectAnswer,
+                 </div>`;
+        return opcao;
     }
-    return opcoes;
-}
-let retornaNome = objeto =>{
-    return objeto.opcao;
+    opcao = `<div class="opcao"  onclick="verificaResposta(this)">
+                <img src="${objeto.image}" alt="">
+                <h3>${objeto.text}</h2>
+            </div>`;
+    return opcao;
 }
 
 let constroiQuestao = questao =>{
-    objOpcao.push(questao.answers.map(constroiOpcoes));
+    objOpcao = questao.answers;
     let pergunta = `<div class="pergunta">
                         <div class="tituloPergunta">
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
-                            ${objOpcao[0].map(retornaNome)}
+                            ${objOpcao.map(constroiOpcoes)}
                         </div>
                     </div>`
     return pergunta;  
