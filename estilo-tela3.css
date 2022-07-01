@@ -1,4 +1,4 @@
-.tela03{
+.tela03 {
     width: 100%;
     height: 1024px;
     background-color: #E5E5E5;
@@ -8,43 +8,71 @@
     background-color: #EC362D;
     width: 100%;
     height: 69px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);     
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.topo h1 {    
-    font-family: 'Roboto', sans-serif;  
+.tela03 h1 {
+    font-family: 'Roboto', sans-serif;
     font-size: 37px;
     font-weight: 700;
     line-height: 43px;
-    letter-spacing: 0em;    
-    text-align: center;      
+    letter-spacing: 0em;
+    text-align: center;
     color: #ffffff;
     padding-top: 13px;
 }
 
-.criacao1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.escondido {
-    display: none;
-}
-
-.criacao1 h2 {
+.tela03 h2 {
     font-family: 'Roboto', sans-serif;
     font-size: 27px;
     font-weight: 700;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: center;
-    padding-top: 71px;
+    padding-top: 63px;
     padding-bottom: 27px;
 }
 
-.questionario1{
+.tela03 h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
+.tela03 h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+}
+
+.criacao1,
+.criacao2,
+.criacao3,
+.criacao4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradiente {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.escondido {
+    display: none;
+}
+
+.questionario1 {
     height: 256px;
     width: 600px;
     background-color: #ffffff;
@@ -52,18 +80,34 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 10px;
 }
 
-.questionario1 input {
-    height: 46px;
-    width: 564px;
-    border-radius: 5px;
-    margin-bottom: 9px;
-    border: 1px solid #D1D1D1;    
+.questionario2,
+.questionario3,
+.questionario4 {
+    height: 825px;
+    width: 600px;
+    background-color: #ffffff;
+    margin-bottom: 24px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
-::placeholder{
+.questionario5 {
+    height: 316px;
+    width: 600px;
+    background-color: #ffffff;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-top: 30px;
+
+}
+
+::placeholder {
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
     font-style: italic;
@@ -75,23 +119,76 @@
     color: #BABABA;
 }
 
-.confirma {
-    margin-top: 85px;
+.botaoConfirma {
+    margin-top: 80px;
     height: 54px;
-    width: 368px;    
+    width: 368px;
     border-radius: 15px;
     background-color: #EC362D;
+    border: #EC362D;
     color: #ffffff;
-    border: #EC362D; 
 }
 
-.confirma p {
+.botaoConfirma1 {
+    margin-top: 45px;
+    margin-bottom: 15px;
+    height: 44px;
+    width: 220px;
+    border-radius: 15px;
+    background: #EC362D;
+    border: #EC362D;
+    color: #ffffff;
+}
+
+.botaoConfirma2 {
+    color: #818181;
+    background: #E5E5E5;
+    border: #E5E5E5;
+}
+
+.botaoConfirma,
+.botaoConfirma1,
+.botaoConfirma2 p {
     font-family: 'Roboto', sans-serif;
     font-size: 21px;
     font-weight: 400;
     line-height: 25px;
     letter-spacing: 0em;
     text-align: center;
+}
+
+.flex {
+    display: flex;
+}
+
+.questionariominimizado img {
+    height: 23px;
+    width: 25px;
+}
+
+.tela03 input {
+    height: 46px;
+    width: 564px;
+    border-radius: 5px;
+    margin: 5px 0;
+    border: 1px solid #D1D1D1;
+}
+
+.questionariominimizado {
+    height: 74px;
+    width: 601px;
+    background-color: #ffffff;
+    margin-bottom: 24px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.criacao4 img {
+    height: 266px;
+    width: 500px;
+    border-radius: 5px;
 }
 
 
