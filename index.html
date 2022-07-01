@@ -14,7 +14,7 @@
     <div class="topo" onclick="redirecionaTela1()">
       <h1>BuzzQuizz</h1>
     </div>
-    <div class="tela01">
+    <div class="tela01 escondido">
       <div class="corpo">
         <div class="criar-quizz">
           <h1>Você não criou nenhum quizz ainda :(</h1>
@@ -44,35 +44,86 @@
 
         <div class="quizz-todos">
           <h3>Todos os Quizzes</h3>
-          <div class="quizz-importados">
-          </div>
+          <div class="quizz-importados"></div>
         </div>
       </div>
     </div>
     <div class="tela02 escondido">
-        <div class="topoTela2">
+      <div class="topoTela2"></div>
+      <div class="perguntas">
+        <div class="pergunta telaDeAcerto">
+          <div class="tituloAcerto">
+            <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
+          </div>
+          <div>
+            <img src="imagens/Malphite_1.jpg" alt="" />
+            <p>
+              Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop
+              infinito de comida e clique no botão abaixo para usar o vira-tempo
+              e reiniciar este teste.
+            </p>
+          </div>
         </div>
-        <div class="perguntas">
-            <div class="pergunta telaDeAcerto">
-              <div class="tituloAcerto">
-                <h2>88% de acerto: Você é praticamente um aluno de Hogwarts!</h2>
-              </div>
-              <div>
-                <img src="imagens/Malphite_1.jpg" alt="">
-                <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite 
-                  o loop infinito de comida e clique no botão abaixo para usar
-                  o vira-tempo e reiniciar este teste.</p>
-              </div>
-            </div>
-            
-        </div>
+      </div>
     </div>
-    <div class="tela03 escondido"></div>
 
-    
+    <div class="tela03">
+      <div class="topo">
+        <h1>BuzzQuizz</h1>
+      </div>
+
+      <div class="criacao1 escondido">
+        <h2>Comece pelo começo</h2>
+        <div class="questionario1">
+          <input type="text" class="" placeholder="Título do seu quizz" />
+          <input
+            type="text"
+            class=""
+            placeholder="URL da imagem do seu quizz"
+          />
+          <input
+            type="text"
+            class=""
+            placeholder="Quantidade de perguntas do quizz"
+          />
+          <input
+            type="text"
+            class=""
+            placeholder="Quantidade de níveis do quizz"
+          />
+        </div>
+        <button onclick="" class="confirma">
+          <p>Prosseguir pra criar perguntas</p>
+        </button>
+      </div>
+
+      <div class="criacao2 escondido">
+        <h2>Comece pelo começo</h2>
+        <div class="questionario2"></div>
+      </div>
+
+      <div class="criacao3 escondido">
+        <h2>Comece pelo começo</h2>
+        <div class="questionario3"></div>
+      </div>
+
+      <div class="criacao4 escondido">
+        <h2>Comece pelo começo</h2>
+        <img src="" />
+        <button></button>
+        <button></button>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
     <script src="scripts.js"></script>
   </body>
 </html>
