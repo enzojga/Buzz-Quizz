@@ -1,6 +1,7 @@
 const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
+const topo = document.querySelector('.topo');
 let objOpcao;
 let niveis;
 let contadorAcerto = 0;
@@ -71,11 +72,13 @@ function constroiTela2(objeto) {
     topoTela2.innerHTML = `<img src="${objeto.image}" alt="">
                      <h1>${objeto.title}</h1>`;
     perguntas.innerHTML += objeto.questions.map(constroiQuestao);
+    topo.scrollIntoView();
     console.log(totalPerguntas);
 }
 function verificaResposta(opcao) {
     let opcaoPai = opcao.parentNode;
-    console.log(opcao.innerHTML);
+    let perguntasList = document.querySelectorAll('.pergunta');
+    console.log(perguntasList);
     let filhosPai = opcaoPai.querySelectorAll('.opcao');
     if (opcao.classList.contains('divNaoSelecionada') || opcao.classList.contains('escolhido')) {
         return;
@@ -105,6 +108,15 @@ function verificaResposta(opcao) {
     console.log(perguntasRespondidas);
     verificaNivel();
     exibeNivel();
+    setTimeout(scrolaTela, 2000, perguntasList);
+}
+function scrolaTela(lista) {
+    if (lista[perguntasRespondidas] !== undefined) {
+        lista[perguntasRespondidas].scrollIntoView();
+    } else {
+        let telaAcertoScroll = document.querySelector('.telaDeAcerto');
+        telaAcertoScroll.scrollIntoView();
+    }
 }
 
 let constroiOpcoes = objeto => {
@@ -130,7 +142,7 @@ let constroiQuestao = questao => {
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
-                            ${objOpcao.map(constroiOpcoes)}
+                            ${objOpcao.map(constroiOpcoes).sort()}
                         </div>
                     </div>`;
     totalPerguntas++;
@@ -158,7 +170,16 @@ function exibeNivel() {
                                                      ${niveisQuiz[menos1].text}
                                                     </p>
                                                     </div>
-                                                </div>`
+                                                </div>
+                                                `
+                perguntas.innerHTML += `<div class="botoes">
+                                                <div onclick='getThisQuiz()'>
+                                                <h3>Reiniciar Quizz</h3>
+                                                </div>
+                                                <div onclick='redirecionaTela1()'>
+                                                <h3>Voltar pra home</h3>
+                                                </div>
+                                            </div>`;
                 return;
             };
             menos1--;
