@@ -11,42 +11,44 @@
   </head>
 
   <body>
-    <div class="topo" onclick="redirecionaTela1()">
-      <h1>BuzzQuizz</h1>
-    </div>
     <div class="tela01">
+      
+      <div class="topo" onclick="redirecionaTela1()">
+        <h1>BuzzQuizz</h1>
+      </div>
+
       <div class="corpo">
-        <div class="criar-quizz">
+        <div class="criar-quizz ">
           <h1>Você não criou nenhum quizz ainda :(</h1>
           <div onclick="redirecionaTela3()" class="novo-quizz">
             <h2>Criar Quizz</h2>
           </div>
         </div>
 
-        <div class="quizz-criado">
+        <div class="quizz-criado escondido ">
           <div class="titulo">
             <h2>Seus Quizzes</h2>
             <img onclick="redirecionaTela3()" src="img/plus.png" />
           </div>
           <div class="quizz-feito">
-            <div class="quizz-individual">
-              <p onclick="redirecionaTela2()">
-                Acerte os personagens corretos dos Simpsons e prove seu amor!
-              </p>
-            </div>
-            <div class="quizz-individual">
-              <p onclick="redirecionaTela2()">
-                Acerte os personagens corretos dos Simpsons e prove seu amor!
-              </p>
-            </div>
+            <div class="quizz-individual m10">       
+              <img src="img/teste.jpg"/>
+              <div class="gradiente1">
+                <p>batata</p>
+              </div>          
+            </div>            
           </div>
         </div>
 
         <div class="quizz-todos">
+
           <h3>Todos os Quizzes</h3>
           <div class="quizz-importados"></div>
+          
         </div>
+
       </div>
+
     </div>
 
     <div class="tela02 escondido">
@@ -69,27 +71,31 @@
     </div>
 
     <div class="tela03 escondido">
-      <div class="topo">
+      <div class="topo" onclick="redirecionaTela1()">
         <h1>BuzzQuizz</h1>
-      </div>
       
       <!-- Tela 3.1 - não precisa de .flex -->
 
-      <div class="criacao1 escondido">
+      <div class="criacao1 flex ">
         <h2>Comece pelo começo</h2>
+
+        <div class="bg1">
         <div class="questionario1">
           <input type="text" class="" placeholder="Título do seu quizz" />
           <input type="text" class="" placeholder="URL da imagem do seu quizz" />
           <input type="text" class="" placeholder="Quantidade de perguntas do quizz" />
           <input type="text" class="" placeholder="Quantidade de níveis do quizz" />          
         </div>
+        </div>
           <button onclick="" class="botaoConfirma">
           <p>Prosseguir pra criar perguntas</p>
         </button>      
       </div>
 
-      <div class="criacao2 escondido">
-        <h2>Crie suas perguntas</h2>        
+      <div class="criacao2 flex ">
+        <h2>Crie suas perguntas</h2>
+        
+        <div class="bg2">
         <div class="questionario2 flex">         
             <h3>Pergunta 1</h3>
             <input type="text" class="" placeholder="Texto da pergunta" />          
@@ -107,13 +113,17 @@
             <input type="text" class="" placeholder="Resposta incorreta " />  
             <input type="text" class="" placeholder="URL da imagem 3" />
         </div>
+      </div>
 
+        <div class="bg4">
         <div class="questionariominimizado flex">
           <h4>Pergunta 2</h4>
-          <img onclick="//esconde a div 'questionariominimizado1' e revela a div 'questionario3'" src="img/Vector.png">
+          <img onclick="" src="img/Vector.png">
+        </div>
         </div>
 
-        <div class="questionario3 flex">
+        <div class="bg2">
+        <div class="questionario2 flex">
             <h3>Pergunta 2</h3>
             <input type="text" class="" placeholder="Texto da pergunta" />          
             <input type="text" class="" placeholder="Cor de fundo da pergunta" />          
@@ -130,13 +140,17 @@
             <input type="text" class="" placeholder="Resposta incorreta " />  
             <input type="text" class="" placeholder="URL da imagem 3" />
         </div>
-
-        <div class="questionariominimizado flex">
-          <h4>Pergunta 3</h4>
-          <img onclick="//esconde a div 'questionariominimizado2' e revela a div 'questionario4'" src="img/Vector.png">
         </div>
 
-        <div class="questionario4 flex">
+        <div class="bg4">
+        <div class="questionariominimizado flex">
+          <h4>Pergunta 3</h4>
+          <img onclick="" src="img/Vector.png">
+        </div>
+        </div>
+
+        <div class="bg2">
+        <div class="questionario2 flex">
             <h3>Pergunta 3</h3>
             <input type="text" class="" placeholder="Texto da pergunta" />          
             <input type="text" class="" placeholder="Cor de fundo da pergunta" />          
@@ -153,31 +167,40 @@
             <input type="text" class="" placeholder="Resposta incorreta " />  
             <input type="text" class="" placeholder="URL da imagem 3" />
         </div>
+        </div>
 
         <button onclick="" class="botaoConfirma">
           <p>Prosseguir pra criar níveis</p>
         </button> 
       </div>    
 
-      <div class="criacao3 escondido">
+      <div class="criacao3 flex">
         <h2>Agora, decida os níveis</h2>
-        <div class="questionario5">
+        <div class="bg3">
+        <div class="questionario3">
           <h3>Nível 1</h3>
           <input type="text" class="" placeholder="Título do nível" />
           <input type="text" class="" placeholder="% de acerto mínima" />
           <input type="text" class="" placeholder="URL da imagem do nível" />
-          <input type="text" class="" placeholder="Descrição do nível" />          
+          <div class="descricao">
+          <input type="text" class="" placeholder="Descrição do nível" />
+          </div>          
         </div>
+      </div>
 
+      <div class="bg4">
         <div class="questionariominimizado flex">
           <h4>Nível 2</h4>
-          <img onclick="//esconde a div 'questionariominimizado2' e revela a div 'questionario4'" src="img/Vector.png">
+          <img onclick="" src="img/Vector.png">
         </div>
+      </div>
 
+      <div class="bg4">
         <div class="questionariominimizado flex">
           <h4>Nível 3</h4>
-          <img onclick="//esconde a div 'questionariominimizado2' e revela a div 'questionario4'" src="img/Vector.png">
+          <img onclick="" src="img/Vector.png">
         </div>
+      </div>
 
         <button onclick="" class="botaoConfirma">
           <p>Finalizar Quizz</p>
@@ -185,9 +208,17 @@
 
       </div>
 
-      <div class="criacao4 flex">
-        <h2>Seu quizz está pronto!</h2>        
-        <img src=""/>        
+      <div class="criacao4 escondido">
+
+        <h2>Seu quizz está pronto!</h2>
+
+        <div class="quadro">       
+          <img src=""/>
+          <div class="gradiente">
+            <p></p>
+          </div>          
+        </div>   
+
         <button onclick="//acessa o quizz" class="botaoConfirma1">
           <p>Acessar Quizz</p>
         </button>
@@ -196,8 +227,9 @@
         </button>
       </div>
       </div>    
+    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script
       type="module"
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
@@ -207,5 +239,6 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
     <script src="scripts.js"></script>
+
   </body>
 </html>

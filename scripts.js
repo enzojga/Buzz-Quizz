@@ -4,97 +4,99 @@ const tela3 = document.querySelector('.tela03');
 let objOpcao;
 let niveis;
 let contadorAcerto = 0;
-let totalPerguntas =0;
-let perguntasRespondidas =0;
-let porcentagemAcerto =0;
+let totalPerguntas = 0;
+let perguntasRespondidas = 0;
+let porcentagemAcerto = 0;
 let niveisQuiz;
 const topoTela2 = document.querySelector('.topoTela2');
 let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
-const quizIndividual = objeto =>{
-      let templateQuiz =`<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
+const quizIndividual = objeto => {
+    let templateQuiz = `<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
                             <img src="${objeto.image}">
+                            <div class="gradiente1">
                             <p>${objeto.title}</p>
+                            </div>
                         </div>`
     return templateQuiz;
 }
 let verificaTrue;
 let perguntas = document.querySelector('.perguntas');
 
-function getQuizz(){
+function getQuizz() {
     let chamaQuiz = axios.get('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes');
     chamaQuiz.then(listaQuiz);
     chamaQuiz.catch(trataQuiz);
 }
-function listaQuiz(objeto){
+function listaQuiz(objeto) {
     quizImportado.innerHTML += objeto.data.map(quizIndividual);
 }
-function trataQuiz(objeto){
+function trataQuiz(objeto) {
     console.log('erro ao chamar');
 }
-function redirecionaTela1(){
+function redirecionaTela1() {
     tela1.classList.remove('escondido')
     tela2.classList.add('escondido');
     tela3.classList.add('escondido');
 }
-function redirecionaTela2(argumento){
+function redirecionaTela2(argumento) {
     idObjeto = argumento.id;
     tela1.classList.add('escondido')
     tela2.classList.remove('escondido');
     tela3.classList.add('escondido');
     getThisQuiz();
 }
-function redirecionaTela3(){
+function redirecionaTela3() {
     tela1.classList.add('escondido')
     tela2.classList.add('escondido');
     tela3.classList.remove('escondido');
 }
-function selecionaOpcao(opcao){
+function selecionaOpcao(opcao) {
 
 }
-function getThisQuiz(){
+function getThisQuiz() {
     const getIDQuiz = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idObjeto}`);
     getIDQuiz.then(trataIDquiz);
     contadorAcerto = 0;
-    totalPerguntas =0;
-    perguntasRespondidas =0;
+    totalPerguntas = 0;
+    perguntasRespondidas = 0;
 
 }
-function trataIDquiz(objeto){
+function trataIDquiz(objeto) {
     constroiTela2(objeto.data);
     niveisQuiz = objeto.data.levels;
 }
-function constroiTela2(objeto){
-    perguntas.innerHTML ='';
+function constroiTela2(objeto) {
+    perguntas.innerHTML = '';
     topoTela2.innerHTML = `<img src="${objeto.image}" alt="">
                      <h1>${objeto.title}</h1>`;
     perguntas.innerHTML += objeto.questions.map(constroiQuestao);
     console.log(totalPerguntas);
 }
-function verificaResposta(opcao){
+function verificaResposta(opcao) {
     let opcaoPai = opcao.parentNode;
     console.log(opcao.innerHTML);
     let filhosPai = opcaoPai.querySelectorAll('.opcao');
-    if(opcao.classList.contains('divNaoSelecionada') || opcao.classList.contains('escolhido')){
+    if (opcao.classList.contains('divNaoSelecionada') || opcao.classList.contains('escolhido')) {
         return;
-    }else if(opcao.classList.contains('correta')){
+    } else if (opcao.classList.contains('correta')) {
         contadorAcerto++;
         perguntasRespondidas++;
-    }else{
+    } else {
         perguntasRespondidas++;
     }
-    if(opcaoPai.querySelector('.escolhido') === null){
+    if (opcaoPai.querySelector('.escolhido') === null) {
         opcao.classList.add('escolhido');
     }
-    for(let i =0; i <filhosPai.length; i++){
-        if(!filhosPai[i].classList.contains('correta')){
+    for (let i = 0; i < filhosPai.length; i++) {
+        if (!filhosPai[i].classList.contains('correta')) {
             let h3Filhos = filhosPai[i].querySelector('h3');
             h3Filhos.classList.add('h3Errado');
         }
-        if(!filhosPai[i].classList.contains('escolhido')){
+        if (!filhosPai[i].classList.contains('escolhido')) {
             filhosPai[i].classList.add('divNaoSelecionada');
         }
-        if(filhosPai[i].classList.contains('correta')){
+        if (filhosPai[i].classList.contains('correta')) {
             let h3Correto = filhosPai[i].querySelector('h3');
             h3Correto.classList.add('h3Correto')
         }
@@ -105,10 +107,10 @@ function verificaResposta(opcao){
     exibeNivel();
 }
 
-let constroiOpcoes = objeto =>{
+let constroiOpcoes = objeto => {
     let opcao;
-    if(objeto.isCorrectAnswer){
-         opcao = `<div class="opcao correta"  onclick="verificaResposta(this)">
+    if (objeto.isCorrectAnswer) {
+        opcao = `<div class="opcao correta"  onclick="verificaResposta(this)">
                     <img src="${objeto.image}" alt="">
                     <h3>${objeto.text}</h2>
                  </div>`;
@@ -121,7 +123,7 @@ let constroiOpcoes = objeto =>{
     return opcao;
 }
 
-let constroiQuestao = questao =>{
+let constroiQuestao = questao => {
     objOpcao = questao.answers;
     let pergunta = `<div class="pergunta">
                         <div class="tituloPergunta">
@@ -132,20 +134,20 @@ let constroiQuestao = questao =>{
                         </div>
                     </div>`;
     totalPerguntas++;
-    return pergunta;  
+    return pergunta;
 }
-function verificaNivel(){
-    if(perguntasRespondidas === totalPerguntas){
+function verificaNivel() {
+    if (perguntasRespondidas === totalPerguntas) {
         return true;
     }
 }
-function exibeNivel(){
+function exibeNivel() {
     porcentagemAcerto = Math.floor((contadorAcerto * 100) / totalPerguntas);
     console.log(niveisQuiz[0].minValue);
-    let menos1 = niveisQuiz.length -1;
-    if(verificaNivel()){
-        for(let i = niveisQuiz.length; i > 0; i--){
-            if(porcentagemAcerto >= niveisQuiz[menos1].minValue){
+    let menos1 = niveisQuiz.length - 1;
+    if (verificaNivel()) {
+        for (let i = niveisQuiz.length; i > 0; i--) {
+            if (porcentagemAcerto >= niveisQuiz[menos1].minValue) {
                 perguntas.innerHTML += `        <div class="pergunta telaDeAcerto">
                                                     <div class="tituloAcerto">
                                                     <h2>${niveisQuiz[menos1].title}</h2>
@@ -160,7 +162,7 @@ function exibeNivel(){
                 return;
             };
             menos1--;
-    }
+        }
     }
 }
 getQuizz();

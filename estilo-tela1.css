@@ -110,7 +110,7 @@
     height: 409px;
 }
 
-.titulo1 h3 {
+.tela01 h3 {
     font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 700;
@@ -121,46 +121,61 @@
 }
 
 .quizz-importados {
+    height: 374px;
+    width: 1050px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin-left: -20px;
     margin-top: 14px;
+    justify-content: space-between;
+    overflow: hidden;
 }
 
-.quizz-criados {
+.quizz-feito {
     display: flex;
-    flex-wrap: wrap;
+}
+
+.m10 {
     margin-right: 10px;
-    margin-left: -20px;
 }
 
 .quizz-individual {
-    margin-bottom: 10px;
+    position: relative;
+    height: 181px;
+    width: 340px;
+    padding-bottom: 15px;
 }
 
+
+
 .quizz-individual img {
-    position: absolute;
     height: 181px;
     width: 340px;
     border-radius: 5px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+}
 
+.gradiente1 {
+    position: absolute;
+    height: 181px;
+    width: 340px;
+    top: 0;
+    left: 0;
+    border-radius: 5px;
+    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 65.62%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 .quizz-individual p {
-    position: relative;
+    position: absolute;
     font-family: 'Roboto', sans-serif;
-    height: 54px;
-    width: 301px;
-    font-size: 19px;
+    font-size: 23px;
     font-weight: 400;
-    line-height: 22px;
+    line-height: 27px;
     letter-spacing: 0em;
+    text-align: left;
+    bottom: 0;
+    left: 0;
+    margin-left: 20px;
+    margin-bottom: 20px;
     color: #ffffff;
-    text-align: center;
-    padding-left: 10px;
-    padding-top: 125px;
 }
 
 @media (max-width: 1100px) {
@@ -169,22 +184,29 @@
         margin-top: 31px;
     }
 
-    .criar-quizz {
+    .criar-quizz,
+    .quizz-criado {
         height: 181px;
         width: 340px;
         border-radius: 5px;
     }
 
+    .quizz-feito {
+        flex-direction: column;
+    }
 
     .quizz-todos {
+        height: 100%;
         display: flex;
-        justify-content: center;
         flex-direction: column;
+        justify-content: space-evenly;
         align-items: center;
-        padding-top: 35px;
+        overflow-y: hidden;
     }
 
     .quizz-importados {
+        width: 340px;
+        height: 100%;
         flex-direction: column;
     }
 
