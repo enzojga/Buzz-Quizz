@@ -12,6 +12,9 @@ let niveisQuiz;
 const topoTela2 = document.querySelector('.topoTela2');
 let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
+function comparador() { 
+	return Math.random() - 0.5; 
+}
 const quizIndividual = objeto => {
     let templateQuiz = `<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
                             <img src="${objeto.image}">
@@ -70,6 +73,7 @@ function trataIDquiz(objeto) {
 function constroiTela2(objeto) {
     perguntas.innerHTML = '';
     topoTela2.innerHTML = `<img src="${objeto.image}" alt="">
+                     <div class="fundoEscuro"></div>
                      <h1>${objeto.title}</h1>`;
     perguntas.innerHTML += objeto.questions.map(constroiQuestao);
     topo.scrollIntoView();
@@ -142,7 +146,7 @@ let constroiQuestao = questao => {
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
-                            ${objOpcao.map(constroiOpcoes).sort()}
+                            ${objOpcao.map(constroiOpcoes).sort(comparador)}
                         </div>
                     </div>`;
     totalPerguntas++;
