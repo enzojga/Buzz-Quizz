@@ -5,7 +5,7 @@ const topo = document.querySelector('.topo');
 let objOpcao;
 let niveis;
 let niveisList = [];
-let objQuestionario ={};
+let objQuestionario = {};
 let contadorAcerto = 0;
 let quizzCriado;
 let questions = [];
@@ -16,8 +16,8 @@ let niveisQuiz;
 const topoTela2 = document.querySelector('.topoTela2');
 let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
-function comparador() { 
-	return Math.random() - 0.5; 
+function comparador() {
+    return Math.random() - 0.5;
 }
 const quizIndividual = objeto => {
     let templateQuiz = `<div id="${objeto.id}" class="quizz-individual" onclick="redirecionaTela2(this)">
@@ -140,14 +140,16 @@ let constroiOpcoes = objeto => {
 
 let constroiQuestao = questao => {
     objOpcao = questao.answers;
-    let pergunta = `<div class="pergunta">
+    let pergunta = `    <div class="wCem">
+                        <div class="pergunta">
                         <div class="tituloPergunta">
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
                             ${objOpcao.map(constroiOpcoes).sort(comparador)}
                         </div>
-                    </div>`;
+                        </div>
+                        </div>`;
     totalPerguntas++;
     return pergunta;
 }
@@ -188,10 +190,10 @@ function exibeNivel() {
         }
     }
 }
-function geraPerguntas(index){
+function geraPerguntas(index) {
     let criacao = document.querySelector('.criacao2');
-    criacao.innerHTML= `<h2>Crie suas perguntas</h2>`;
-    for(let i=1; i <= index; i++){
+    criacao.innerHTML = `<h2>Crie suas perguntas</h2>`;
+    for (let i = 1; i <= index; i++) {
         criacao.innerHTML += `<div class="bg2">
                                     <div class="questionario2 flex">
                                         <h3>Pergunta ${i}</h3>
@@ -216,17 +218,19 @@ function geraPerguntas(index){
                             <p>Prosseguir pra criar níveis</p>
                           </button>`;
 }
-function geraNiveis(index){
+function geraNiveis(index) {
     const criacao3 = document.querySelector('.criacao3');
     criacao3.innerHTML = '<h2>Agora, decida os níveis</h2>';
-    for(let i=1; i <= index; i++){
+    for (let i = 1; i <= index; i++) {
         criacao3.innerHTML += `<div class="bg3">
                                     <div class="questionario3">
                                     <h3>Nível ${i}</h3>
                                     <input type="text" class="" placeholder="Título do nível" />
                                     <input type="text" class="" placeholder="% de acerto mínima" />
                                     <input type="text" class="" placeholder="URL da imagem do nível" />
+                                    <div class="descricao">
                                     <input type="text" class="" placeholder="Descrição do nível" />  
+                                    </div>
                                     </div>
                                 </div>`
     }
@@ -234,15 +238,15 @@ function geraNiveis(index){
                             <p>Finalizar Quizz</p>
                            </button>`
 }
-function verificaNiveis(){
+function verificaNiveis() {
     const listaNiveis = document.querySelectorAll('.questionario3');
-    for (let i = 0; i < listaNiveis.length; i++){
+    for (let i = 0; i < listaNiveis.length; i++) {
         montaNiveis(listaNiveis[i]);
     }
 }
-function montaNiveis(lista){
+function montaNiveis(lista) {
     console.log(lista);
-    let nivelCriado ={
+    let nivelCriado = {
         title: lista.querySelector(':nth-child(2)').value,
         minValue: lista.querySelector(':nth-child(3)').value,
         image: lista.querySelector(':nth-child(4)').value,
@@ -254,99 +258,99 @@ function montaNiveis(lista){
 
 function checakUrl(string) {
     try {
-     let url = new URL(string)
-     return true;
-   } catch(err) {
+        let url = new URL(string)
+        return true;
+    } catch (err) {
         return false;
-   }
- }
-function verificaQuestionario(){
+    }
+}
+function verificaQuestionario() {
     const questionario = document.querySelector('.questionario1');
     const criacao1 = document.querySelector('.criacao1');
-    objQuestionario ={
+    objQuestionario = {
         title: questionario.querySelector(':nth-child(1)').value,
         image: questionario.querySelector(':nth-child(2)').value,
         quantidadePerguntas: questionario.querySelector(':nth-child(3)').value,
         quantidadeNiveis: questionario.querySelector(':nth-child(4)').value,
     }
-    if(!verificaObj(objQuestionario,criacao1)){
+    if (!verificaObj(objQuestionario, criacao1)) {
         alert('Preencha os dados corretamente')
     }
 }
-function verificaObj(objeto,criacao1){
-    if(objeto.title.length < 20 && objeto.title.length < 65){
-        return false;
-    } 
-    if(!checakUrl(objeto.image)){
+function verificaObj(objeto, criacao1) {
+    if (objeto.title.length < 20 && objeto.title.length < 65) {
         return false;
     }
-    if(objeto.quantidadePerguntas < 3 || isNaN(objeto.quantidadePerguntas)){
+    if (!checakUrl(objeto.image)) {
         return false;
     }
-    if(objeto.quantidadeNiveis < 2 || isNaN(objeto.quantidadeNiveis)){
+    if (objeto.quantidadePerguntas < 3 || isNaN(objeto.quantidadePerguntas)) {
+        return false;
+    }
+    if (objeto.quantidadeNiveis < 2 || isNaN(objeto.quantidadeNiveis)) {
         return false;
     }
     geraPerguntas(objeto.quantidadePerguntas);
     criacao1.classList.remove('flex');
     criacao1.classList.add('escondido');
-    return true;   
+    return true;
 }
-function verificaPerguntas(){
+function verificaPerguntas() {
     const listaQuestoes = document.querySelectorAll('.questionario2');
-    for (let i = 0; i < listaQuestoes.length; i++){
+    for (let i = 0; i < listaQuestoes.length; i++) {
         montaQuizz(listaQuestoes[i]);
     }
     let filtro = questions.filter(verificaQuestions);
     console.log(filtro);
     console.log(questions.length);
-    if(filtro.length < questions.length){
+    if (filtro.length < questions.length) {
         alert('ALGO DEU ERRADO');
         questions = [];
-    }else {
+    } else {
         geraNiveis(objQuestionario.quantidadeNiveis);
     }
 }
-function montaQuizz(objeto){
-    let quizzCriado ={
+function montaQuizz(objeto) {
+    let quizzCriado = {
         title: objeto.querySelector(':nth-child(2)').value,
         color: objeto.querySelector(':nth-child(3)').value,
         answers: [{
             text: objeto.querySelector(':nth-child(5)').value,
-            image:objeto.querySelector(':nth-child(6)').value,
+            image: objeto.querySelector(':nth-child(6)').value,
             isCorrectAnswer: true
-        },{
+        }, {
             text: objeto.querySelector(':nth-child(8)').value,
             image: objeto.querySelector(':nth-child(9)').value,
             isCorrectAnswer: false
-        },{
+        }, {
             text: objeto.querySelector(':nth-child(11)').value,
             image: objeto.querySelector(':nth-child(12)').value,
             isCorrectAnswer: false
-        },{
+        }, {
             text: objeto.querySelector(':nth-child(14)').value,
             image: objeto.querySelector(':nth-child(15)').value,
             isCorrectAnswer: false
         }
-    ]
+        ]
     }
     questions.push(quizzCriado);
 }
-function verificaVazio (questao) {
+function verificaVazio(questao) {
     let answers = questao.answers;
     console.log(answers[0]);
-    if(answers[0].text = '' || answers[1].text == ''){
+    if (answers[0].text = '' || answers[1].text == '') {
         return false;
     }
-    if(!checakUrl(answers[0].image) || !checakUrl(answers[1].image) ){
+    if (!checakUrl(answers[0].image) || !checakUrl(answers[1].image)) {
         return false;
     }
     return true;
 }
-let verificaQuestions = questao =>{
-    if(questao.title.length < 20){
+let verificaQuestions = questao => {
+    if (questao.title.length < 20) {
         return false;
     }
-    if(!verificaVazio(questao)){
+    if (!verificaVazio(questao)) {
         return false;
     }
     return true;
