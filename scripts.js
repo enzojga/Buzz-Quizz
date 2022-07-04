@@ -2,6 +2,7 @@ const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
 const topo = document.querySelector('.topo');
+localStorage.setItem("teste", 'estou testando');
 let objOpcao;
 let niveis;
 let niveisList = [];
@@ -13,6 +14,7 @@ let totalPerguntas = 0;
 let perguntasRespondidas = 0;
 let porcentagemAcerto = 0;
 let niveisQuiz;
+let objPost;
 const topoTela2 = document.querySelector('.topoTela2');
 let idObjeto;
 const quizImportado = document.querySelector('.quizz-importados');
@@ -25,8 +27,17 @@ const quizIndividual = objeto => {
                             <div class="gradiente1">
                             <p>${objeto.title}</p>
                             </div>
-                        </div>`
-    return templateQuiz;
+                        </div>`;
+    let idVerifica = localStorage.getItem(`${objeto.id}`);
+    if(idVerifica === null){
+        quizImportado.innerHTML += templateQuiz;
+    }else if(idVerifica !== undefined){
+        let quizCriado = document.querySelector('.quizz-criado');
+        let criarQuiz = document.querySelector('.criar-quizz');
+        quizCriado.classList.remove('escondido');
+        criarQuiz.classList.add('escondido');
+        quizCriado.innerHTML += templateQuiz;
+    }
 }
 let verificaTrue;
 let perguntas = document.querySelector('.perguntas');
@@ -37,30 +48,35 @@ function getQuizz() {
     chamaQuiz.catch(trataQuiz);
 }
 function listaQuiz(objeto) {
-    quizImportado.innerHTML += objeto.data.map(quizIndividual);
+    quizImportado.innerHTML ='';
+    objeto.data.map(quizIndividual);
 }
 function trataQuiz(objeto) {
     console.log('erro ao chamar');
 }
 function redirecionaTela1() {
-    tela1.classList.remove('escondido')
+    getQuizz();
+    tela1.classList.remove('escondido');
     tela2.classList.add('escondido');
     tela3.classList.add('escondido');
 }
 function redirecionaTela2(argumento) {
     idObjeto = argumento.id;
-    tela1.classList.add('escondido')
+    tela1.classList.add('escondido');
+    tela2.classList.remove('escondido');
+    tela3.classList.add('escondido');
+    getThisQuiz();
+}
+function redirecionaTela2ID(){
+    tela1.classList.add('escondido');
     tela2.classList.remove('escondido');
     tela3.classList.add('escondido');
     getThisQuiz();
 }
 function redirecionaTela3() {
-    tela1.classList.add('escondido')
+    tela1.classList.add('escondido');
     tela2.classList.add('escondido');
     tela3.classList.remove('escondido');
-}
-function selecionaOpcao(opcao) {
-
 }
 function getThisQuiz() {
     const getIDQuiz = axios.get(`https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes/${idObjeto}`);
@@ -112,6 +128,7 @@ function verificaResposta(opcao) {
     }
     verificaNivel();
     setTimeout(scrolaTela, 2000, perguntasList);
+    exibeNivel();
 }
 function scrolaTela(lista) {
     if (lista[perguntasRespondidas] !== undefined) {
@@ -140,9 +157,14 @@ let constroiOpcoes = objeto => {
 
 let constroiQuestao = questao => {
     objOpcao = questao.answers;
+<<<<<<< HEAD
     let pergunta = `    <div class="wCem">
                         <div class="pergunta">
                         <div class="tituloPergunta">
+=======
+    let pergunta = `<div class="pergunta">
+                        <div style="background-color:${questao.color};"class="tituloPergunta">
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
@@ -238,21 +260,40 @@ function geraNiveis(index) {
                             <p>Finalizar Quizz</p>
                            </button>`
 }
+<<<<<<< HEAD
 function verificaNiveis() {
+=======
+function verificaNiveis(){
+    const criacao3 = document.querySelector('.criacao3')
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
     const listaNiveis = document.querySelectorAll('.questionario3');
     for (let i = 0; i < listaNiveis.length; i++) {
         montaNiveis(listaNiveis[i]);
     }
+    verificaMinValue(niveisList);
+    let filtro = niveisList.filter(verificaNiveisList);
+    if(filtro.length < niveisList.length || !verificaMinValue()){
+        alert('Preencha os dados corretamente');
+        niveisList = [];
+    }else{
+        criacao3.classList.remove('flex');
+        criacao3.classList.add('escondido');
+        telaPronta();
+    }
 }
+<<<<<<< HEAD
 function montaNiveis(lista) {
     console.log(lista);
     let nivelCriado = {
+=======
+function montaNiveis(lista){
+    let nivelCriado ={
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
         title: lista.querySelector(':nth-child(2)').value,
-        minValue: lista.querySelector(':nth-child(3)').value,
+        minValue: Number(lista.querySelector(':nth-child(3)').value),
         image: lista.querySelector(':nth-child(4)').value,
         text: lista.querySelector(':nth-child(5)').value
     }
-    console.log(nivelCriado);
     niveisList.push(nivelCriado);
 }
 
@@ -297,6 +338,7 @@ function verificaObj(objeto, criacao1) {
 }
 function verificaPerguntas() {
     const listaQuestoes = document.querySelectorAll('.questionario2');
+<<<<<<< HEAD
     for (let i = 0; i < listaQuestoes.length; i++) {
         montaQuizz(listaQuestoes[i]);
     }
@@ -305,13 +347,36 @@ function verificaPerguntas() {
     console.log(questions.length);
     if (filtro.length < questions.length) {
         alert('ALGO DEU ERRADO');
+=======
+    const criacao2 = document.querySelector('.criacao2')
+    for (let i = 0; i < listaQuestoes.length; i++){
+        montaQuizz(listaQuestoes[i]);
+    }
+    let filtro = questions.filter(verificaQuestions);
+    if(filtro.length < questions.length){
+        alert('Preencha os dados corretamente');
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
         questions = [];
     } else {
         geraNiveis(objQuestionario.quantidadeNiveis);
+        criacao2.classList.remove('flex');
+        criacao2.classList.add('escondido');    
     }
 }
+<<<<<<< HEAD
 function montaQuizz(objeto) {
     let quizzCriado = {
+=======
+function verificaMinValue(){
+    if(niveisList[0].minValue !== 0 && niveisList[1].minValue !== 0){
+        return false;
+    }
+    return true;
+}
+function montaQuizz(objeto){
+
+    let quizzCriado ={
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
         title: objeto.querySelector(':nth-child(2)').value,
         color: objeto.querySelector(':nth-child(3)').value,
         answers: [{
@@ -322,6 +387,7 @@ function montaQuizz(objeto) {
             text: objeto.querySelector(':nth-child(8)').value,
             image: objeto.querySelector(':nth-child(9)').value,
             isCorrectAnswer: false
+<<<<<<< HEAD
         }, {
             text: objeto.querySelector(':nth-child(11)').value,
             image: objeto.querySelector(':nth-child(12)').value,
@@ -332,18 +398,49 @@ function montaQuizz(objeto) {
             isCorrectAnswer: false
         }
         ]
+=======
+        }
+
+    ]
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
     }
+    if(objeto.querySelector(':nth-child(11)').value != ''){
+        let respostaErrada2 =  {
+            text: objeto.querySelector(':nth-child(11)').value,
+            image: objeto.querySelector(':nth-child(12)').value,
+            isCorrectAnswer: false    
+        }
+        quizzCriado.answers.push(respostaErrada2);
+    }
+    if(objeto.querySelector(':nth-child(14)').value != ''){
+        let respostaErrada3 ={
+            text: objeto.querySelector(':nth-child(14)').value,
+            image: objeto.querySelector(':nth-child(15)').value,
+            isCorrectAnswer: false    
+        }
+        quizzCriado.answers.push(respostaErrada3);
+    }
+
+    console.log(quizzCriado);
+    console.log(questions)
     questions.push(quizzCriado);
 }
 function verificaVazio(questao) {
     let answers = questao.answers;
     console.log(answers[0]);
+<<<<<<< HEAD
     if (answers[0].text = '' || answers[1].text == '') {
+=======
+    if(answers[0].text == '' || answers[1].text == ''){
+>>>>>>> 0522796986b9bfe3400c1e4b2ec18a25a376a62f
         return false;
     }
     if (!checakUrl(answers[0].image) || !checakUrl(answers[1].image)) {
         return false;
     }
+    if(!verificaHexa(questao.color)){
+        return false;
+    };
     return true;
 }
 let verificaQuestions = questao => {
@@ -354,5 +451,70 @@ let verificaQuestions = questao => {
         return false;
     }
     return true;
+}
+function verificaList (nivel) {
+    console.log(nivel);
+    if(!checakUrl(nivel.image)){
+        return false;
+    }
+    return true;
+}
+let verificaNiveisList = nivel =>{
+    if(nivel.title.length < 10){
+        return false;
+    }
+    if(!verificaList(nivel)){
+        return false;
+    }
+    if(nivel.text.length < 30){
+        return false;
+    }
+    if(!(nivel.minValue >= 0 && nivel.minValue <= 100) || isNaN(nivel.minValue)){
+        return false;
+    }
+    return true;
+}
+function telaPronta(){
+    console.log(niveisList);
+    let criacao4 = document.querySelector('.criacao4');
+    objPost = {
+        title: objQuestionario.title,
+        image: objQuestionario.image,
+        questions: questions,
+        levels: niveisList
+    }
+    let postQuiz = axios.post('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes',objPost);
+    postQuiz.then(trataPostQuiz);
+    console.log(objPost);
+    criacao4.innerHTML += `<h2>Seu quizz está pronto!</h2>
+                            <div class="quadro">       
+                            <img src="${objQuestionario.image}"/>
+                            <div class="gradiente">
+                                <p>${objQuestionario.title}</p>
+                            </div>          
+                            </div>   
+                            <button onclick="redirecionaTela2ID()" class="botaoConfirma1">
+                            <p>Acessar Quizz</p>
+                            </button>
+                            <button onclick="redirecionaTela1()" class="botaoConfirma2">
+                            <p>Voltar pra Home</p>
+                         </button>`;
+}
+function trataPostQuiz(post){
+    console.log(post);
+    idObjeto = post.data.id;
+    let id= JSON.stringify(idObjeto);
+    localStorage.setItem(`${id}`,id);
+}
+function verificaHexa(inputString){
+    let re = /[0-9A-Fa-f]{6}/g;
+    teste = re.lastIndex;
+    if(re.test(inputString) && inputString[0] === '#') {
+        teste =0;
+        return true;
+    } else {
+        teste =0;
+        return false;
+    }
 }
 getQuizz();
