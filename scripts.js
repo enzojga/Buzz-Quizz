@@ -158,12 +158,14 @@ let constroiOpcoes = objeto => {
 
 let constroiQuestao = questao => {
     objOpcao = questao.answers;
-    let pergunta = `<div class="pergunta">
-                        <div style="background-color:${questao.color};"class="tituloPergunta">
-                            <h2>${questao.title}</h2>
-                        </div>
-                        <div class="opcoes">
-                            ${objOpcao.map(constroiOpcoes).sort(comparador).join('')}
+    let pergunta = `<div class="wCem">
+                        <div class="pergunta">
+                            <div style="background-color:${questao.color};"class="tituloPergunta">
+                                <h2>${questao.title}</h2>
+                            </div>
+                            <div class="opcoes">
+                                ${objOpcao.map(constroiOpcoes).sort(comparador).join('')}
+                            </div>
                         </div>
                     </div>`;
     totalPerguntas++;
@@ -291,7 +293,9 @@ function geraNiveis(index){
                                     <input type="text" class="" placeholder="Título do nível" />
                                     <input type="text" class="" placeholder="% de acerto mínima" />
                                     <input type="text" class="" placeholder="URL da imagem do nível" />
-                                    <input type="text" class="" placeholder="Descrição do nível" />  
+                                    <div class="descricao">
+                                        <input type="text" class="" placeholder="Descrição do nível" />  
+                                    </div>
                                     </div>
                                 </div>
                                 </div>`
@@ -322,7 +326,7 @@ function montaNiveis(lista){
         title: lista.querySelector(':nth-child(2)').value,
         minValue: Number(lista.querySelector(':nth-child(3)').value),
         image: lista.querySelector(':nth-child(4)').value,
-        text: lista.querySelector(':nth-child(5)').value
+        text: lista.querySelector(':nth-child(5) input').value
     }
     niveisList.push(nivelCriado);
 }
