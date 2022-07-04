@@ -3,6 +3,7 @@ const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
 const topo = document.querySelector('.tela02 .topo');
 localStorage.setItem("teste", 'estou testando');
+const quizzFeito = document.querySelector('.quizz-feito');
 let objOpcao;
 let niveis;
 let niveisList = [];
@@ -32,7 +33,6 @@ const quizIndividual = objeto => {
     if(idVerifica === null){
         quizImportado.innerHTML += templateQuiz;
     }else if(idVerifica !== undefined){
-        let quizzFeito = document.querySelector('.quizz-feito')
         let quizCriado = document.querySelector('.quizz-criado');
         let criarQuiz = document.querySelector('.criar-quizz');
         quizCriado.classList.remove('escondido');
@@ -49,7 +49,9 @@ function getQuizz() {
     chamaQuiz.catch(trataQuiz);
 }
 function listaQuiz(objeto) {
+    const quizzFeito = document.querySelector('.quizz-feito');
     quizImportado.innerHTML ='';
+    quizzFeito.innerHTML ='';
     objeto.data.map(quizIndividual);
 }
 function trataQuiz(objeto) {
@@ -427,14 +429,10 @@ function montaQuizz(objeto){
         }
         quizzCriado.answers.push(respostaErrada3);
     }
-
-    console.log(quizzCriado);
-    console.log(questions)
     questions.push(quizzCriado);
 }
 function verificaVazio (questao) {
     let answers = questao.answers;
-    console.log(answers[0]);
     if(answers[0].text == '' || answers[1].text == ''){
         return false;
     }
@@ -456,7 +454,6 @@ let verificaQuestions = questao =>{
     return true;
 }
 function verificaList (nivel) {
-    console.log(nivel);
     if(!checakUrl(nivel.image)){
         return false;
     }
@@ -478,7 +475,6 @@ let verificaNiveisList = nivel =>{
     return true;
 }
 function telaPronta(){
-    console.log(niveisList);
     let criacao4 = document.querySelector('.criacao4');
     objPost = {
         title: objQuestionario.title,
@@ -488,7 +484,6 @@ function telaPronta(){
     }
     let postQuiz = axios.post('https://mock-api.driven.com.br/api/v7/buzzquizz/quizzes',objPost);
     postQuiz.then(trataPostQuiz);
-    console.log(objPost);
     criacao4.innerHTML += `<h2>Seu quizz está pronto!</h2>
                             <div class="quadro">       
                             <img src="${objQuestionario.image}"/>
@@ -504,7 +499,6 @@ function telaPronta(){
                          </button>`;
 }
 function trataPostQuiz(post){
-    console.log(post);
     idObjeto = post.data.id;
     let id= JSON.stringify(idObjeto);
     localStorage.setItem(`${id}`,id);
