@@ -162,7 +162,7 @@ let constroiQuestao = questao => {
                             <h2>${questao.title}</h2>
                         </div>
                         <div class="opcoes">
-                            ${objOpcao.map(constroiOpcoes).sort(comparador)}
+                            ${objOpcao.map(constroiOpcoes).sort(comparador).join('')}
                         </div>
                     </div>`;
     totalPerguntas++;
@@ -205,11 +205,52 @@ function exibeNivel() {
         }
     }
 }
+function exibeQuestionario(div){
+    let paiDiv = div.parentElement;
+    let minimizado = paiDiv.querySelector(':nth-child(1)');
+    let maximizado = paiDiv.querySelector('.bg2');
+    if(document.querySelector('.expandida') !== null){
+        let expandida = document.querySelector('.expandida');
+        let minimizado1 = expandida.querySelector(':nth-child(1)');
+        let maximizado1 = expandida.querySelector('.bg2');
+        expandida.classList.remove('expandida');
+        minimizado1.classList.toggle('flex');
+        minimizado1.classList.toggle('escondido');
+        maximizado1.classList.toggle('escondido');    
+    }
+    paiDiv.classList.add('expandida');
+    minimizado.classList.toggle('flex');
+    minimizado.classList.toggle('escondido');
+    maximizado.classList.toggle('escondido');
+}
+function exibeQuestionarioNivel(div){
+    let paiDiv = div.parentElement;
+    let minimizado = paiDiv.querySelector(':nth-child(1)');
+    let maximizado = paiDiv.querySelector('.bg3');
+    if(document.querySelector('.expandida') !== null){
+        let expandida = document.querySelector('.expandida');
+        let minimizado1 = expandida.querySelector(':nth-child(1)');
+        let maximizado1 = expandida.querySelector('.bg3');
+        expandida.classList.remove('expandida');
+        minimizado1.classList.toggle('flex');
+        minimizado1.classList.toggle('escondido');
+        maximizado1.classList.toggle('escondido');    
+    }
+    paiDiv.classList.add('expandida');
+    minimizado.classList.toggle('flex');
+    minimizado.classList.toggle('escondido');
+    maximizado.classList.toggle('escondido');
+}
 function geraPerguntas(index){
     let criacao = document.querySelector('.criacao2');
     criacao.innerHTML= `<h2>Crie suas perguntas</h2>`;
     for(let i=1; i <= index; i++){
-        criacao.innerHTML += `<div class="bg2">
+        criacao.innerHTML += `<div class="questionarios">
+                                <div onclick="exibeQuestionario(this)" class="questionariominimizado flex">
+                                    <h4>Pergunta ${i}</h4>
+                                    <img src="img/Vector.png">
+                                </div>
+                                <div class="bg2 escondido">
                                     <div class="questionario2 flex">
                                         <h3>Pergunta ${i}</h3>
                                         <input type="text" class="" placeholder="Texto da pergunta" />          
@@ -227,7 +268,8 @@ function geraPerguntas(index){
                                         <input type="text" class="" placeholder="Resposta incorreta " />  
                                         <input type="text" class="" placeholder="URL da imagem 3" />
                                     </div>
-                                </div>`
+                                </div>
+                               </div>`
     }
     criacao.innerHTML += `<button onclick="verificaPerguntas()" class="botaoConfirma">
                             <p>Prosseguir pra criar níveis</p>
@@ -237,7 +279,12 @@ function geraNiveis(index){
     const criacao3 = document.querySelector('.criacao3');
     criacao3.innerHTML = '<h2>Agora, decida os níveis</h2>';
     for(let i=1; i <= index; i++){
-        criacao3.innerHTML += `<div class="bg3">
+        criacao3.innerHTML += `<div class="questionarios">
+                                <div onclick="exibeQuestionarioNivel(this)" class="questionariominimizado flex">
+                                    <h4>Pergunta ${i}</h4>
+                                    <img src="img/Vector.png">
+                                </div>
+                                <div class="bg3 escondido">
                                     <div class="questionario3">
                                     <h3>Nível ${i}</h3>
                                     <input type="text" class="" placeholder="Título do nível" />
@@ -245,6 +292,7 @@ function geraNiveis(index){
                                     <input type="text" class="" placeholder="URL da imagem do nível" />
                                     <input type="text" class="" placeholder="Descrição do nível" />  
                                     </div>
+                                </div>
                                 </div>`
     }
     criacao3.innerHTML += `<button onclick="verificaNiveis()" class="botaoConfirma">
@@ -330,7 +378,9 @@ function verificaPerguntas(){
     }else {
         geraNiveis(objQuestionario.quantidadeNiveis);
         criacao2.classList.remove('flex');
-        criacao2.classList.add('escondido');    
+        criacao2.classList.add('escondido');
+        let expandido = document.querySelector('.expandida');
+        expandido.classList.remove('expandida');
     }
 }
 function verificaMinValue(){
