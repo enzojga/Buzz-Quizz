@@ -1,7 +1,7 @@
 const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
-const topo = document.querySelector('.topo');
+const topo = document.querySelector('.tela02 .topo');
 localStorage.setItem("teste", 'estou testando');
 let objOpcao;
 let niveis;
@@ -32,11 +32,12 @@ const quizIndividual = objeto => {
     if(idVerifica === null){
         quizImportado.innerHTML += templateQuiz;
     }else if(idVerifica !== undefined){
+        let quizzFeito = document.querySelector('.quizz-feito')
         let quizCriado = document.querySelector('.quizz-criado');
         let criarQuiz = document.querySelector('.criar-quizz');
         quizCriado.classList.remove('escondido');
         criarQuiz.classList.add('escondido');
-        quizCriado.innerHTML += templateQuiz;
+        quizzFeito.innerHTML += templateQuiz;
     }
 }
 let verificaTrue;
@@ -84,7 +85,7 @@ function getThisQuiz() {
     contadorAcerto = 0;
     totalPerguntas = 0;
     perguntasRespondidas = 0;
-
+    topoTela2.scrollIntoView();
 }
 function trataIDquiz(objeto) {
     constroiTela2(objeto.data);
@@ -95,7 +96,7 @@ function constroiTela2(objeto) {
     topoTela2.innerHTML = `<img src="${objeto.image}" alt="">
                      <div class="fundoEscuro"></div>
                      <h1>${objeto.title}</h1>`;
-    perguntas.innerHTML += objeto.questions.map(constroiQuestao);
+    perguntas.innerHTML += objeto.questions.map(constroiQuestao).join('');
     topo.scrollIntoView();
 }
 function verificaResposta(opcao) {
@@ -348,7 +349,7 @@ function verificaQuestionario(){
     }
 }
 function verificaObj(objeto,criacao1){
-    if(objeto.title.length < 20 && objeto.title.length < 65){
+    if(objeto.title.length < 20 || objeto.title.length > 65){
         return false;
     } 
     if(!checakUrl(objeto.image)){
