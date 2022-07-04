@@ -2,6 +2,7 @@ const tela1 = document.querySelector('.tela01');
 const tela2 = document.querySelector('.tela02');
 const tela3 = document.querySelector('.tela03');
 const topo = document.querySelector('.topo');
+localStorage.setItem("teste", 'estou testando');
 let objOpcao;
 let niveis;
 let niveisList = [];
@@ -27,7 +28,16 @@ const quizIndividual = objeto => {
                             <p>${objeto.title}</p>
                             </div>
                         </div>`;
-    quizImportado.innerHTML += templateQuiz;
+    let idVerifica = localStorage.getItem(`${objeto.id}`);
+    if(idVerifica === null){
+        quizImportado.innerHTML += templateQuiz;
+    }else if(idVerifica !== undefined){
+        let quizCriado = document.querySelector('.quizz-criado');
+        let criarQuiz = document.querySelector('.criar-quizz');
+        quizCriado.classList.remove('escondido');
+        criarQuiz.classList.add('escondido');
+        quizCriado.innerHTML += templateQuiz;
+    }
 }
 let verificaTrue;
 let perguntas = document.querySelector('.perguntas');
@@ -441,6 +451,8 @@ function telaPronta(){
 function trataPostQuiz(post){
     console.log(post);
     idObjeto = post.data.id;
+    let id= JSON.stringify(idObjeto);
+    localStorage.setItem(`${id}`,id);
 }
 function verificaHexa(inputString){
     let re = /[0-9A-Fa-f]{6}/g;
